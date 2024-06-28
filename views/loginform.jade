@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1= "Login"
+
+    form(method="POST")
+        div.formContainer
+            label(for="email") Email:
+            input(type="text" placeholder="johnappleseec@gmail.com" name="email" required)
+        div.formContainer
+            label(for="password") Password: 
+            textarea(placeholder="123456" name="password" required)
+        button.submitbtn(type='submit') Login
+
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg

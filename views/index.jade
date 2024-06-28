@@ -1,5 +1,9 @@
-extends layout
+extends layout 
 
-block content
-  h1= title
-  p Welcome to #{title}
+block content 
+    p Members Only Home Page
+
+    button(type="button")
+        a(href="/auth/sign-up") Sign Up
+    button(type="button")
+        a(href="/auth/log-in") Login

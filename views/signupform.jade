@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= "Sign Up"
+  
+  form(method="POST")
+    div.formContainer
+      label(for="email") Email:
+      input(type="text" placeholder="johnappleseec@gmail.com" name="email" required)
+    div.formContainer
+      label(for="password") Password: 
+      textarea(placeholder="123456" name="password" required)
+    div.formContainer
+      label(for="confirmPassword") Confirm Password: 
+      textarea(placeholder="123456" name="confirmPassword" required)
+    button.submitbtn(type='submit') Create
+
+  if errors 
+    ul 
+        for error in errors 
+            li!= error.msg
