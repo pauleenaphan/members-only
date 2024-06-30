@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    p Only cool members know the passcode 
+
+    form(method="POST")
+        div.formContainer
+            label(for="passcode") Passcode: 
+            input(type="text" placeholder="Enter passcode" name="passcode" required)
+        button.submitbtn(type="submit") Join
+
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg

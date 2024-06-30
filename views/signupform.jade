@@ -4,6 +4,9 @@ block content
   h1= "Sign Up"
   
   form(method="POST")
+    div.formContainer 
+      label(for="name") Name: 
+      input(type="text" placeholder="John" name="name" required)
     div.formContainer
       label(for="email") Email:
       input(type="text" placeholder="johnappleseec@gmail.com" name="email" required)
