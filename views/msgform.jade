@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+    h1= "What do you want to share?"
+    
+    form(method="POST")
+        div.formContainer 
+            label(for="subject") Subject: 
+            input(type="text" placeholder="Subject Title" name="subject" required)
+        div.formContainer 
+            label(for="message") Message: 
+            textArea(type="text" placeholder="Type a message" name="message" required)
+        button.submitbtn(type="submit") Post 
+
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg

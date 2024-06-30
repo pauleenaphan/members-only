@@ -1,16 +1,17 @@
 var express = require('express');
 var router = express.Router();
 const User = require("../models/user");
+const Message = require("../models/msg");
 const passport = require('passport');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs'); // Import bcryptjs for password hashing
 
-router.get("/home", async(req, res) => {
-    // const user = await User.findById(req.user.id);
-    // const isMember = user.memberstatus;
-    // console.log(isMember);
-    res.render("homepage"); // Render your homepage template
-});
+function getFormattedDate(date) {
+    return date.toLocaleString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+}
 
 //!Sign up routers
 router.get("/sign-up", (req, res) => 
@@ -43,19 +44,9 @@ router.post("/sign-up", [
             user: req.body,
             errors: errors.array()
         });
-    } else {
-        try {
-            await user.save();
-             // Automatically log in the user after signup
-            req.login(user, (err) => {
-                if (err) {
-                    return next(err);
-                }
-            });
-            res.redirect("/auth/home");
-        } catch(err) {
-            next(err);
-        }
+    }else{
+        await user.save();
+        res.redirect('/auth/log-in');
     }
 });
 
@@ -83,8 +74,23 @@ router.get("/log-out", (req, res, next) => {
     });
 });
 
+//!Home routers
+router.get("/home", async(req, res) => {
+    const msgs = await Message.find().sort({ date: 1 }).exec();
+    const formattedMessages = msgs.map(msg => ({
+        ...msg.toObject(),
+        formattedDate: getFormattedDate(msg.date)
+    }));
+
+
+    res.render("homepage", {
+        msgs: formattedMessages,
+        status: req.user.memberstatus
+    });
+});
+
 //!Club page routers
-router.get("/clubpage", (req,res) =>{
+router.get("/clubpage", (req, res) =>{
     res.render("joinclub");
 })
 
@@ -118,5 +124,35 @@ router.post("/clubpage", async (req, res) =>{
         }
     }
 })
+
+//!New message routers
+router.get("/newmsg", (req, res) =>{
+    res.render("msgform");
+    console.log("REQ USER", req.user)
+})
+
+router.post("/newmsg", async(req, res) =>{
+    body("subject", "Subject must not be empty").trim().isLength({ min: 1 }).escape(),
+    body("message", "Message must not be empty").trim().isLength({ min: 1 }).escape()
+
+    const errors = validationResult(req);
+
+    const msg = new Message({
+        subject: req.body.subject,
+        message: req.body.message,
+        author: req.user.name,
+    })
+
+    if(!errors.isEmpty()){
+        res.render("msgform", {
+            msg: req.body,
+            errors: errors.array()
+        })
+    }else{
+        await msg.save();
+        res.redirect("/auth/home");
+    }
+})
+
 
 module.exports = router; // Export the router object

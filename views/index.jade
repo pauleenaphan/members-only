@@ -7,3 +7,12 @@ block content
         a(href="/auth/sign-up") Sign Up
     button(type="button")
         a(href="/auth/log-in") Login
+
+    if msgs 
+        each msg in msgs 
+            li 
+                | #{msg.subject}
+                | #{msg.message}
+                p You must be a member to see who posted 
+    else 
+        p There are no messages right now :c

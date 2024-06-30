@@ -4,3 +4,23 @@ block content
     h1= "Welcome to Members only"
     button(type="button")
         a(href="/auth/clubpage") Join the club
+    button(type="button")
+        a(href="/auth/newmsg") Create new message
+    button(type="button")
+        a(href="/auth/log-out") Logout
+    
+    if msgs && status == true
+        each msg in msgs 
+            li 
+                | #{msg.subject}
+                | #{msg.message}
+                | #{msg.author} 
+                | #{msg.formattedDate}
+    else if msgs 
+        each msg in msgs 
+            li 
+                | #{msg.subject}
+                | #{msg.message}
+                p You must be a member to see who posted
+    else 
+        p There are no messages right now :c
