@@ -1,13 +1,8 @@
-# Boiler Plate for express.js with mongodb
+# MembersOnly
 
-Installation
+Message board where users can post messages. Only members can see who posted and when. Created by using express.js and jade. <br>
 
+[Deployed with Glitch](https://nostalgic-pacific-web.glitch.me)
 ```
-
-> Git Clone
-> npm install 
-> Create .env file  (env file should be in gitignore)
-> Add DEV_DB_URL = "Your mongodb key" 
-> npm run dev
-
+Passcode: chicken
 ```
