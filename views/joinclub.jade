@@ -1,11 +1,26 @@
 extends layout 
 
 block content 
-    p Only cool members know the passcode 
+    nav
+        div.wordContainer
+            h1.wrd1
+                a(href="/auth/home") Members
+            h1.wrd2
+                a(href="/auth/home") Only
+        div.btnContainer
+            button.primarybtn(type="button")
+                a(href="/auth/clubpage") Join the club
+            button.primarybtn(type="button")
+                a(href="/auth/newmsg") + New Message
+            button.primarybtn(type="button")
+                a(href="/auth/log-out") Logout
+    
+    h2.msgTitle= "Only cool members know the password"
+
 
     form(method="POST")
         div.formContainer
-            label(for="passcode") Passcode: 
+            label(for="passcode") Passcode
             input(type="text" placeholder="Enter passcode" name="passcode" required)
         button.submitbtn(type="submit") Join
 

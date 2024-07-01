@@ -115,8 +115,6 @@ router.post("/clubpage", async (req, res) =>{
     }else{ 
         try{
             //sets user's membership status to true
-            console.log("REQ USER", req.user);
-            console.log("CURRENT SESSION ID", req.user.id);
             await User.findByIdAndUpdate(req.user.id, { memberstatus: true })
             res.redirect("/auth/home");
         }catch(error){
@@ -127,8 +125,9 @@ router.post("/clubpage", async (req, res) =>{
 
 //!New message routers
 router.get("/newmsg", (req, res) =>{
-    res.render("msgform");
-    console.log("REQ USER", req.user)
+    res.render("msgform", {
+        status: req.user.memberstatus
+    });
 })
 
 router.post("/newmsg", async(req, res) =>{
@@ -146,7 +145,8 @@ router.post("/newmsg", async(req, res) =>{
     if(!errors.isEmpty()){
         res.render("msgform", {
             msg: req.body,
-            errors: errors.array()
+            errors: errors.array(),
+            status: req.user.memberstatus
         })
     }else{
         await msg.save();

@@ -1,8 +1,152 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*{
+  margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/* !Members welcome page */
+nav{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.wordContainer{
+  display: flex;
+  font-size: 27px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.wrd1 a{
+  color: cadetblue;
+  text-decoration: none;
+}
+
+.wrd2 a{
+  color: black;
+  text-decoration: none;
+}
+
+.btnContainer{
+  display: flex;
+  gap: 10px;
+}
+
+.primarybtn{
+  background-color: cadetblue;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.primarybtn:hover{
+  background-color: rgb(74, 123, 124);
+  cursor: pointer;
+}
+
+.primarybtn a{
+  color: white;
+  text-decoration: none;
+}
+
+/* !Messages styling */
+.msgTitle{
+  background-color: rgb(248, 246, 246);
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+}
+
+.messages{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 40px 0;
+  margin-top: 30px;
+  max-height: 60vh; /* Adjust this value as needed */
+  overflow-y: auto;
+}
+
+.msgContainer{
+  background-color: rgb(235, 235, 235);
+  width: 70%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.msgContainer h3{
+  font-size: 27px;
+}
+
+.postedContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* forms */
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30%;
+}
+
+label {
+  font-size: 17px;
+  position: absolute;
+  background-color: white;
+  padding: 0px 5px;
+  margin: -10px 0 0 20px;
+}
+
+input, textarea{
+  border: solid 3px cadetblue;
+  padding: 10px 10px 10px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+textarea{
+  height: 300px;
+  resize: none;
+}
+
+input:focus{
+  border: solid 3px rgb(73, 120, 122);
+}
+
+.submitbtn{
+  background-color: cadetblue;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.submitbtn:hover{
+  background-color: rgb(74, 123, 124);
+  cursor: pointer;
 }

@@ -1,18 +1,27 @@
 extends layout 
 
 block content 
-    p Members Only Home Page
+    nav
+        div.wordContainer
+            h1.wrd1
+                a(href="/") Members
+            h1.wrd2
+                a(href="/") Only
+        div.btnContainer
+            button.primarybtn(type="button")
+                a(href="/auth/sign-up") Sign Up
+            button.primarybtn(type="button")
+                a(href="/auth/log-in") Login
 
-    button(type="button")
-        a(href="/auth/sign-up") Sign Up
-    button(type="button")
-        a(href="/auth/log-in") Login
+    h2.msgTitle= "Messages"
 
-    if msgs 
-        each msg in msgs 
-            li 
-                | #{msg.subject}
-                | #{msg.message}
-                p You must be a member to see who posted 
-    else 
-        p There are no messages right now :c
+    section.messages
+        if msgs 
+            each msg in msgs 
+                div.msgContainer
+                    h3 #{msg.subject}
+                    p #{msg.message}
+                    hr
+                    p You must be a member to see who posted 
+        else 
+            p There are no messages right now :c

@@ -1,7 +1,22 @@
 extends layout 
 
 block content 
-    h1= "What do you want to share?"
+    nav
+        div.wordContainer
+            h1.wrd1
+                a(href="/auth/home") Members
+            h1.wrd2
+                a(href="/auth/home") Only
+        div.btnContainer
+            if status == false
+                button.primarybtn(type="button")
+                    a(href="/auth/clubpage") Join the club
+            button.primarybtn(type="button")
+                a(href="/auth/newmsg") + New Message
+            button.primarybtn(type="button")
+                a(href="/auth/log-out") Logout
+    
+    h2.msgTitle= "What do you want to share?"
     
     form(method="POST")
         div.formContainer 

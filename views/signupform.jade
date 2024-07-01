@@ -1,20 +1,32 @@
 extends layout
 
 block content
-  h1= "Sign Up"
+  nav
+    div.wordContainer
+      h1.wrd1
+          a(href="/") Members
+      h1.wrd2
+          a(href="/") Only
+    div.btnContainer
+        button.primarybtn(type="button")
+            a(href="/auth/sign-up") Sign Up
+        button.primarybtn(type="button")
+            a(href="/auth/log-in") Login
+
+  h2.msgTitle= "Sign Up"
   
   form(method="POST")
     div.formContainer 
-      label(for="name") Name: 
+      label(for="name") Name
       input(type="text" placeholder="John" name="name" required)
     div.formContainer
-      label(for="email") Email:
+      label(for="email") Email
       input(type="text" placeholder="johnappleseec@gmail.com" name="email" required)
     div.formContainer
-      label(for="password") Password: 
+      label(for="password") Password
       input(type="password" placeholder="123456" name="password" required)
     div.formContainer
-      label(for="confirmPassword") Confirm Password: 
+      label(for="confirmPassword") Confirm Password 
       input(type="password" placeholder="123456" name="confirmPassword" required)
     button.submitbtn(type='submit') Create
 

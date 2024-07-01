@@ -1,8 +1,20 @@
 extends layout
 
 block content
-    h1= "Login"
+    nav
+        div.wordContainer
+            h1.wrd1
+                a(href="/") Members
+            h1.wrd2
+                a(href="/") Only
+        div.btnContainer
+            button.primarybtn(type="button")
+                a(href="/auth/sign-up") Sign Up
+            button.primarybtn(type="button")
+                a(href="/auth/log-in") Login
 
+    h1.msgTitle= "Login"
+    
     form(method="POST")
         div.formContainer
             label(for="email") Email:
