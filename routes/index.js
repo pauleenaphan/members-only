@@ -12,7 +12,8 @@ function getFormattedDate(date) {
 
 /* GET home page. */
 router.get('/', async(req, res, next) =>{
-  const msgs = await Message.find().sort({ date: 1 }).exec();
+  //sorting by -1 will do the descending order so newer post will show up first
+  const msgs = await Message.find().sort({ date: -1 }).exec();
   const formattedMessages = msgs.map(msg => ({
       ...msg.toObject(),
       formattedDate: getFormattedDate(msg.date)

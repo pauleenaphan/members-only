@@ -76,7 +76,7 @@ router.get("/log-out", (req, res, next) => {
 
 //!Home routers
 router.get("/home", async(req, res) => {
-    const msgs = await Message.find().sort({ date: 1 }).exec();
+    const msgs = await Message.find().sort({ date: -1 }).exec();
     const formattedMessages = msgs.map(msg => ({
         ...msg.toObject(),
         formattedDate: getFormattedDate(msg.date)
